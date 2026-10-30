@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block content %}
+<div class="welcome"><div><h1>Twoje zadania</h1><p>Zalogowano jako <strong>{{ user.username }}</strong></p></div>
+<form method="post" action="/logout"><button class="secondary" type="submit">Wyloguj</button></form></div>
+<section class="panel"><h2>Dodaj zadanie</h2><form method="post" action="/tasks">
+<label>Tytuł<input name="title" maxlength="160" required placeholder="Np. Przygotować prezentację"></label>
+<label>Opis<textarea name="description" maxlength="4000" rows="3" placeholder="Opcjonalny opis"></textarea></label>
+<button type="submit">Dodaj</button></form></section>
+<h2>Lista zadań ({{ tasks|length }})</h2>
+{% for task in tasks %}
+<article class="task {% if task.done %}done{% endif %}">
+<div class="taskhead"><h3>{% if task.done %}✓ {% endif %}{{ task.title }}</h3>
+<form method="post" action="/tasks/{{ task.id }}/toggle"><button class="secondary" type="submit">{% if task.done %}Cofnij{% else %}Zakończ{% endif %}</button></form></div>
+<p>{{ task.description or "Brak opisu." }}</p>
+<details><summary>Edytuj</summary><form method="post" action="/tasks/{{ task.id }}/edit">
+<label>Tytuł<input name="title" maxlength="160" required value="{{ task.title }}"></label>
+<label>Opis<textarea name="description" maxlength="4000" rows="2">{{ task.description }}</textarea></label>
+<button type="submit">Zapisz zmiany</button></form></details>
+<form method="post" action="/tasks/{{ task.id }}/delete" onsubmit="return confirm('Na pewno usunąć zadanie?')"><button class="danger" type="submit">Usuń</button></form>
+</article>
+{% else %}<section class="panel"><p>Brak zadań. Dodaj pierwsze powyżej.</p></section>{% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or "Task Manager" }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header><a class="brand" href="/">Task Manager</a><span>Projekt Azure · CRUD</span></header>
+<main>{% block content %}{% endblock %}</main>
+<footer>Demo edukacyjne · Nie używaj prawdziwych ani wrażliwych danych.</footer>
+</body>
+</html>

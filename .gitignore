@@ -1,0 +1,11 @@
+.env
+*.db
+__pycache__/
+.pytest_cache/
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+*.tfplan
+*.pem
+*.key
+ansible/inventory.ini

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<section class="panel narrow"><h1>Rejestracja</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="post" action="/register">
+<label>Nazwa użytkownika<input name="username" minlength="3" maxlength="80" required autocomplete="username"></label>
+<label>Hasło (min. 12 znaków)<input name="password" type="password" minlength="12" required autocomplete="new-password"></label>
+<button type="submit">Utwórz konto</button></form>
+<p>Masz konto? <a href="/login">Zaloguj się</a></p></section>
+{% endblock %}
